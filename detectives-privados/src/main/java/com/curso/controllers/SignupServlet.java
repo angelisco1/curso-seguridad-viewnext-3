@@ -29,6 +29,15 @@ public class SignupServlet extends HttpServlet {
 		String web = req.getParameter("web");
 		String role = req.getParameter("role");
 		
+		
+		if (name == "" || username == "" || password == "" || role == "" || web == "") {
+			System.out.println("[!] CUIDADO CON EL XSS");
+			resp.sendRedirect("signup.html");
+			return;
+		}
+		
+		
+		
 		String url = "https://www.google.com/recaptcha/api/siteverify";
 		String secret = "6Lcd83opAAAAAPMIr0kErPbOqM2YRbWuy5RGVN3R";
 		String recaptchaResp = req.getParameter("g-recaptcha-response");
